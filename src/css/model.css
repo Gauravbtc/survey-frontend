@@ -1,0 +1,75 @@
+.modal {
+  font-size: 12px;
+}
+.modal > .header {
+  width: 100%;
+  border-bottom: 1px solid gray;
+  padding: 5px;
+}
+.modal-header{
+  font-size: 16px;
+  text-align: left;
+}
+
+.font-size-13{
+  font-size: 13px;
+}
+
+.modal > .content {
+  width: 100%;
+  padding: 10px 5px;
+}
+.modal > .actions {
+  width: 100%;
+  padding: 10px 5px;
+  margin: auto;
+  text-align: center;
+}
+.modal > .close {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 2px 5px;
+  line-height: 20px;
+  right: -10px;
+  top: -10px;
+  font-size: 24px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #cfcece;
+}
+
+a.close {
+  font-size: 20px;
+  background: #EEEEEE;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  border-radius: 50%;
+  color: #fff;
+  line-height: 20px;
+  position: absolute;
+  right: 5px;
+  top: 15px;
+  opacity: 1;
+  font-weight: 300;
+  color: #37474F;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .16)
+}
+a.close:hover{
+  background: #E53935;
+  color: #fff;
+  opacity: 1;
+}
+.popup-content {
+  width: auto !important;
+  border-radius: 5px;
+  box-shadow: 0 15px 23px rgba(0,0,0,.23);
+  padding: 0 !important;
+}
+.modal-footer{
+  border: none;
+}
+.b-text{
+  color: #333;
+}

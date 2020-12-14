@@ -1,16 +1,54 @@
+import './index.css';
+import './css/fonts.css';
+import './css/font-awesome.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
+import '../src/css/bootstrap.min.css';
+import '../src/css/animate.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import { BrowserRouter as Router } from 'react-router-dom';
+import {createStore,applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+import { composeWithDevTools} from 'redux-devtools-extension';
+import App from './components/App';
+import rootReducer from './reducers/index_reducers';
+// import registerServiceWorker from './registerServiceWorker';
+import { authUser,authUserSuccess,authUserFailure } from './actions/user_action';
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(
+    applyMiddleware(thunk),
+  )
 );
 
+let next = store.dispatch;
+const userLocalStorage = localStorage.getItem('user');
+
+ setTimeout(function(){
+ if(userLocalStorage) {
+   next = store.dispatch(authUser());
+   next.payload.then((response) => {
+     if(!response.error && response.status === 200){
+       store.dispatch(authUserSuccess(response.data));
+     }
+     else{
+       store.dispatch(authUserFailure(response.data));
+     } 
+   })
+ }
+}, 1000);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Router>
+      <App />
+    </Router>
+  </Provider>,document.getElementById('root')
+  );
+  // registerServiceWorker();
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

@@ -1,0 +1,199 @@
+/*Header*/
+header {
+  background-color: #fff;
+  z-index: 1;
+  padding-left: 250px;
+  -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+  height: 50px;
+  position: fixed;
+  left: 0px;
+  right: 0px; }
+
+body.closeNav header {
+  padding-left: 0px; }
+
+header .header-top {
+  display: block;
+  margin: 0px -15px;
+  padding: 5px 15px;
+  font-size: 0.8em;
+  color: #666; }
+
+header .header-main {
+  margin: 0px -15px;
+  padding: 5px 15px; }
+
+.header-main .logo {
+  display: inline-block;
+  margin: 0px 0px 0px 0px; }
+
+.logo img {
+  max-height: 40px; }
+
+.nav-secondary {
+  margin: 10px 0px 0px 0px; }
+
+.header-main .menuToggle {
+  width: 25px;
+  height: 25px;
+  position: relative;
+  display: inline-block;
+  top: 7px;
+  margin-right: 15px;
+  left: -100px;
+  margin-left: -45px; }
+
+body.closeNav .header-main .menuToggle {
+  -webkit-transition: all 0.5s 0.2s ease-in-out 0.2s;
+  -webkit-transition: all 0.5s 0.2s ease-in-out;
+  -o-transition: all 0.5s 0.2s ease-in-out;
+  transition: all 0.5s 0.2s ease-in-out;
+  left: 0px;
+  margin-left: 0px; }
+
+.header-main .menuToggle span {
+  background-color: #3f485a;
+  left: 0px;
+  top: 12px; }
+
+.header-main .menuToggle span:before, .header-main .menuToggle span:after {
+  background-color: #3f485a; }
+
+/*Navigation Menu*/
+nav {
+  border-top: 1px solid #ddd;
+  display: block;
+  background-color: #495469;
+  position: fixed;
+  z-index: 2;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  overflow: auto;
+  width: 250px;
+  padding-top: 50px; }
+
+body.closeNav nav {
+  left: -250px; }
+
+nav .menuToggle {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  color: #fff;
+  opacity: 0.5;
+  padding: 0px 25px;
+  line-height: 50px;
+  font-weight: 300;
+  font-size: 1.5em;
+  background-color: #3f485a; }
+
+nav .menuToggle:hover {
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1; }
+
+.menuToggle span {
+  display: block;
+  height: 2px;
+  background-color: #fff;
+  width: 25px;
+  position: absolute;
+  right: 25px;
+  top: 26px; }
+
+.menuToggle span:before, .menuToggle span:after {
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  content: '';
+  display: block;
+  height: 2px;
+  background-color: #fff;
+  position: relative; }
+
+.menuToggle span:before {
+  top: -7px;
+  left: 3px; }
+
+.menuToggle span:after {
+  bottom: -5px;
+  right: 3px; }
+
+.menuToggle:hover span:before {
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  left: -3px; }
+
+.menuToggle:hover span:after {
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  right: -3px; }
+
+nav ul.nav li {
+  display: block; }
+
+nav ul.nav .glyphicon {
+  position: absolute;
+  font-size: 0.7em;
+  right: 15px;
+  top: 14px; }
+
+nav ul.nav > li > a {
+  padding: 10px 25px;
+  color: #b2b6be;
+  border-radius: 0px;
+  font-size: 0.9em;
+  border-left: 2px solid transparent; }
+  nav ul.nav > li > a:hover {
+    background-color: transparent;
+    border-left: 2px solid #fff; }
+    nav ul.nav > li > a:hover i {
+      -webkit-transition: all 0.2s ease-in-out;
+      -o-transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out;
+      -webkit-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      transform: rotate(90deg); }
+  nav ul.nav > li > a:focus {
+    background-color: transparent; }
+
+.dropdown-menu > li > a {
+  color: #c1c1c1;
+  font-size: 0.9em; }
+  .dropdown-menu > li > a:hover {
+    background-color: transparent;
+    color: #9a9a9a; }
+
+.nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
+  background-color: transparent; }
+
+nav ul.nav > li.dropdown ul li {
+  display: block; border: 2px solid transparent; padding: 10px 5px;}
+
+nav .dropdown-menu {
+  display: block;
+  float: none;
+  position: static;
+  border-radius: 0px;
+  padding: 0px 0px;
+  background-color: #434D60;
+  margin: 0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  overflow: hidden;
+  max-height: 0px;
+  opacity: 0;
+  visibility: hidden;
+  border: none; }
+
+nav li.dropdown.open .dropdown-menu {
+  max-height: 800px;
+  opacity: 1;
+  visibility: visible;
+  padding: 10px 0px; }

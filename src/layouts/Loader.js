@@ -1,33 +1,31 @@
-import React from 'react';
+import React , {useEffect} from 'react';
 import { HashLoader } from 'react-spinners';
 import $ from 'jquery';
 
-class Loader extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: true
-    }
-  }
-
-  componentWillMount() {
-    $('body').addClass('overlay')
-  }
+const Loader = (props) => {
+  let loader = true
   
-  componentWillUnmount() {
-    $('body').removeClass('overlay');
-  }
+  useEffect(() => {  
+    if(loader){
+      $('body').addClass('overlay');  
+      $('body').removeClass('overlay');
+    }
+    else{
+      $('body').removeClass('overlay');
+    }
+    
+  });
 
-  render() {
+  if(loader){
     return (
-        <main className="loder-center">
-          <div className="container-fluid">
-            <div className='sweet-loading'>
-                <HashLoader color={'#EB9D1A'}  loading={this.state.loading} />
-                <p>{this.props.message && this.props.message}</p>
-              </div>
-           </div>
-        </main>
+      <main className="loder-center">
+        <div className="container-fluid">
+          <div className='sweet-loading'>
+              <HashLoader color={'#EB9D1A'}  loading={loader} />
+              <p>{props.message && props.message}</p>
+            </div>
+         </div>
+      </main>
     )
   }
 }

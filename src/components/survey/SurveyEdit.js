@@ -9,9 +9,7 @@ function SurveyEdit(props){
   useEffect(() => {  
     if(props.surveyShow && !success){
       var id = props.match.params.id
-      props.fetchSurvey(id);
-      console.log("called inside show");
-
+      props.fetchSurvey(id)
     }
     if(success){
       props.updateSurveyReset()

@@ -1,27 +1,28 @@
-import React, { Component } from 'react';
+import React, { useEffect} from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import $ from 'jquery';
 
-class Menu extends Component{
-  componentDidMount(){
+const Menu =(props) =>{
+  const { user } = props.user;
+
+  useEffect(() => {  
     $('.menuToggle').on('click', function(e){
       e.preventDefault();
       $('body').toggleClass('closeNav');
     });
-    
+
     var path = window.location.href; 
     $('li a').each(function() {
-     if (this.href === path) {
-       console.log("called");
-      $(this).parent().parent().parent().addClass("open")
-     }
+      if (this.href === path) {
+        $(this).parent().parent().parent().addClass("open")
+      }
     });
-  }
-  
-  render(){
-    const { user } = this.props.user;
     
+  },[]);
+
+
+  if(user){
     return(
       <div>
         <div className="container-fluid">			
@@ -53,6 +54,7 @@ class Menu extends Component{
     )
   }
 }
+
 
 function mapStateToProps(state) {
   return {

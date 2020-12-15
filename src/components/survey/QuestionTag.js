@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import TagsInput from 'react-tagsinput';
 import 'react-tagsinput/react-tagsinput.css'; 
 
 
-class QuestionTag extends React.Component {  
+class QuestionTag extends Component {  
   state = {
     tags: []
   }
@@ -14,15 +13,10 @@ class QuestionTag extends React.Component {
     this.props.change(this.props.question_name , tags)
   }
 
-  componentDidMount(props){
-    console.log(props);
-    // this.setState({ tags: this.props.input.value })
-  }
-
 
   render() {
     const {
-      input: { value, onChange  }
+      input: { value  }
     } = this.props
     return (
       <div>

@@ -47,7 +47,7 @@ class SurveyNew extends Component{
 			    </div>
 	    	</div>
         {this.error_message(error)}
-        <SurveyForm onSubmit={this.submit} />
+        <SurveyForm onSubmit={this.submit} /> 
       </main>
     );
   }

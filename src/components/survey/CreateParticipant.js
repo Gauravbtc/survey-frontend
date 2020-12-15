@@ -1,57 +1,47 @@
-import React, { Component } from 'react';
-import ParticipantForm from './ParticipantForm';
-import Loader from '../../layouts/Loader';
+import React, { useEffect } from 'react'
+import ParticipantForm from './ParticipantForm'
+import Loader from '../../layouts/Loader'
 
+const CreateParticipant = (props) => {
+  const { error , success, loading} = props.newParticipant
 
-class CreateParticipant extends Component{ 
-  
-  submit = (values) => {
-    values["user_id"] = this.props.loginUser.user.id
-    values["survey_id"] = this.props.match.params.id
-    this.props.createParticipant(values)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if(nextProps.newParticipant.success){
-      this.props.history.push("/survey/show/"+ nextProps.newParticipant.participant.survey_id)
+  useEffect(() => {  
+    if(success){
+      props.resetcreateParticipant()
+      props.history.push("/survey/show/"+ props.newParticipant.participant.survey_id)
     }
-  }
-  
-  componentWillUnmount(){
-    this.props.resetcreateParticipant();
+  },[success]);
+
+  const submit = (values) => {
+    values["user_id"] = props.loginUser.user.id
+    values["survey_id"] = props.match.params.id
+    props.createParticipant(values)
   }
 
-  error_message(error){
+  const error_message = (error) =>{
     if(error){
       const mssages  = Object.keys(error).map(function (key) {
         return [ <li key={key}> {key} {error[key]} </li> ]
       })
 
-     const msg =  <ul>{mssages}</ul>
+      const msg =  <ul>{mssages}</ul>
     return <div className="alert alert-danger">{msg} </div>}
   }
 
-
-  render(){
-    console.log("--", this.props)
-    const { error , loading} = this.props.newParticipant
-    const { user } = this.props.loginUser
-    console.log("---",  user);
-    if(loading) {
-      return <Loader />
-    }
+  if(loading) {
+    return <Loader />
+  }else{
     return(
-      <main>
-        <div className="page-title">
-			    <div className="container-fluid">
-				    <h1>Participant</h1>
-			    </div>
-	    	</div>
-        {this.error_message(error)}
-        {/* {this.renderBill(order)}  */}
-        <ParticipantForm onSubmit={this.submit} />
-      </main>
-    );
+        <main>
+          <div className="page-title">
+            <div className="container-fluid">
+              <h1>Participant</h1>
+            </div>
+          </div>
+          {error_message(error)}
+          <ParticipantForm onSubmit={submit} />
+        </main>
+      );
   }
 }
 

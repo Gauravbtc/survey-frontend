@@ -16,8 +16,6 @@ export const createSurvey = (params) => {
 }
 
 export const createSurveySuccess = (survey) =>{
-  // console.log("---",survey)
-
   return {
     type: "CREATE_SURVEY_SUCCESS",
     payload: survey
@@ -162,7 +160,6 @@ export const resetcreateParticipant = () =>{
 
 
 export const serveyConfirmation = (params) =>{
-  console.log("----", params)
   const request = axios({
     method: 'get',
     url: `${appHost}/api/v1/participants/verify_survey_auth`,
@@ -192,7 +189,6 @@ export const serveyConfirmationFailure = (err) =>{
 
 
 export const fetchSurveyQuestion = (params) => {
-  debugger;
   const request = axios({
     method: 'post',
     url: `${appHost}/api/v1/participants/survey_questions`,
@@ -215,6 +211,35 @@ export const fetchSurveyQuestionSuccess = (survey) =>{
 export const fetchSurveyQuestionFailure = (err) =>{
   return{
     type: "FETCH_SURVEY_QUESTION_FAILURE",
+    payload: err
+  }
+}
+
+
+export const createSurveyResult = (params) =>{
+  const request = axios({
+    method: 'post',
+    url: `${appHost}/api/v1/participants/create_survey_result`,
+    data: {"survey_result": params },
+    headers: {'survey_token': localStorage.getItem("survey_token")}
+  });
+
+  return {
+    type: "CREATE_SURVEY_RESULT",
+    payload: request
+  }
+}
+
+export const createSurveyResultSuccess = (result) =>{
+  return {
+    type: "CREATE_SURVEY_RESULT_SUCCESS",
+    payload: result
+  }
+}
+
+export const createSurveyResultFailure = (err) =>{
+  return {
+    type: "CREATE_SURVEY_RESULT_FAILURE",
     payload: err
   }
 }

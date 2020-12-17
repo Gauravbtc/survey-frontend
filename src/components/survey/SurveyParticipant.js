@@ -3,9 +3,11 @@ import Loader from '../../layouts/Loader'
 
 const SurveyParticipant = (props) => {
   const { error , loading} = props.surveyVerification
+  console.log("----", props.surveyVerification)
   const submit = (values) => {
     if(props.surveyVerification.success){
       if(values.email === props.surveyVerification.participant.email && values.name ===  props.surveyVerification.participant.name){
+        localStorage.setItem('survey_token', props.surveyVerification.participant.survey_token);
         props.history.push("/feedback")
       }
       else{

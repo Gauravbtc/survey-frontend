@@ -14,7 +14,6 @@ function matchDispatchToProps(dispatch){
       (dispatch(serveyConfirmation(token)).payload)
         .then((response) => {
           if(response.status === 200 && response.data.success){
-            localStorage.setItem('survey_token', response.data.data.survey_token);
             dispatch(serveyConfirmationSuccess(response.data));
           }
           else{

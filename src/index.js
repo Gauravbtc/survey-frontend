@@ -15,6 +15,7 @@ import App from './components/App';
 import rootReducer from './reducers/index_reducers';
 // import registerServiceWorker from './registerServiceWorker';
 import { authUser,authUserSuccess,authUserFailure } from './actions/user_action';
+import { serveyConfirmation, serveyConfirmationSuccess,serveyConfirmationFailure } from './actions/survey_action';
 import reportWebVitals from './reportWebVitals';
 
 const store = createStore(
@@ -26,7 +27,7 @@ const store = createStore(
 
 let next = store.dispatch;
 const userLocalStorage = localStorage.getItem('user');
-
+const surveyToken = localStorage.getItem('survey_token');
  setTimeout(function(){
  if(userLocalStorage) {
    next = store.dispatch(authUser());
@@ -39,6 +40,18 @@ const userLocalStorage = localStorage.getItem('user');
      } 
    })
  }
+ if(surveyToken) {
+  next = store.dispatch(serveyConfirmation(surveyToken));
+  next.payload.then((response) => {
+    if(!response.error && response.status === 200){
+      store.dispatch(serveyConfirmationSuccess(response.data));
+    }
+    else{
+      store.dispatch(serveyConfirmationFailure(response.data));
+    } 
+  })
+}
+
 }, 1000);
 
 ReactDOM.render(

@@ -243,3 +243,32 @@ export const createSurveyResultFailure = (err) =>{
     payload: err
   }
 }
+
+export const fetchSurveyResult = (params) =>{
+  const request = axios({
+    method: 'post',
+    url: `${appHost}/api/v1/participants/show_survey_result`,
+    data: {"participant_id": params },
+    headers: {'survey_token': localStorage.getItem("survey_token")}
+  });
+
+  return {
+    type: "SHOW_SURVEY_RESULT",
+    payload: request
+  }
+}
+
+export const fetchSurveyResultSuccess = (result) =>{
+  return {
+    type: "SHOW_SURVEY_RESULT_SUCCESS",
+    payload: result
+  }
+}
+
+export const fetchSurveyResultFailure = (err) =>{
+  return {
+    type: "SHOW_SURVEY_RESULT_FAILURE",
+    payload: err
+  }
+}
+

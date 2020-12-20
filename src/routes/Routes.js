@@ -17,6 +17,7 @@ import CreateParticipant from "../containers/survey/ParticipantContainer";
 import SurveyVerification from "../containers/survey/SurveyVerificationContainer";
 import SurveyParticipant from "../containers/survey/SurveyParticipantContainer";
 import FeedBack from "../containers/survey/FeedBackContainer";
+import SurveyResult from "../containers/survey/SurveyResultContainer";
 
 export default ( ) => (
   <Switch>
@@ -33,6 +34,7 @@ export default ( ) => (
     <AppRoute path='/survey/token=:token' layout= {LoginLayout} exact component={SurveyVerification} />
     <AppRoute path='/participant' layout= {LoginLayout} exact component={SurveyParticipant} />
     <AppRoute path='/feedback'  layout = {UserDashBordLayout} exact component={FeedBack} />
+    <AppRoute path='/survey_result/:id'  layout = {UserDashBordLayout} exact component={SurveyResult} />
     
 
     {/* <AppRoute  exact layout= {LoginLayout }component = {NotFound}  /> */}

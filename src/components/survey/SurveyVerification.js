@@ -1,33 +1,29 @@
-import React ,{ Component } from 'react'
+import React , { useEffect } from 'react'
 import { withRouter } from 'react-router-dom';
 
-class SurveyVerification extends Component{
-  componentWillMount() {
-    // console.log("----", this.props.match.params.token)
-    this.props.serveyConfirmation(this.props.match.params.token);
-  }
 
-  componentWillReceiveProps(nextProps) {
-    console.log("---", nextProps)
-    if(nextProps.surveyVerification.error){
-      alert("Some thing went wrong");
-    }
-    if(nextProps.surveyVerification.success){
-      this.props.history.push('/participant');
-    }
-  }
+const SurveyVerification = (props) =>{
+  const { loading, error, success } = props.surveyVerification
 
+  useEffect(() => {  
+    if(!success && !loading){
+      props.serveyConfirmation(props.match.params.token);
+    }
 
-  render(){
-    const { loading, error } = this.props.surveyVerification;
-    if(loading) {
-      return <div className="container"><h1>Loading</h1></div>
+    if(success){
+      if(error){
+        alert("Some thing went wrong");
+      }
+      if(props.surveyVerification.participant.questions_answers.length > 0){
+        localStorage.setItem("survey_token", props.surveyVerification.participant.survey_token)
+        props.history.push("/survey_result/"+ props.surveyVerification.participant.participant_id)
+      }else{
+        props.history.push('/participant');
+      }
     }
-    else if(error){
-      return <main><div className="container-fluid"><div className="alert alert-danger">Error: {error.message}</div></div></main>
-    }
-    return false;
-  }
+
+  },[success,loading]);
+
+  return false;
 }
-
 export default withRouter(SurveyVerification);

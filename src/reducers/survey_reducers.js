@@ -6,7 +6,8 @@ const INITIAL_STATE ={
   newParticipant: {participant: null,loading: false,success: false,message: null,error: null},
   surveyVerification: {participant: null, loading: false, success: false, message: null, error: null},
   surveyQuestion: {survey: null, error:null, loading: false,success: false},
-  surveyResult: {survey: null, error: null, loading: false, success: false}
+  surveyResult: {survey: null, error: null, loading: false, success: false},
+  showSurveyResult: {survey: null, error: null, loading: false, success: false}
   // billDelete: {bill: null ,loading: false,success: false,error: null ,message: null}
 };
 
@@ -84,7 +85,15 @@ const surveys = (state = INITIAL_STATE, action) => {
     case 'CREATE_SURVEY_RESULT_FAILURE':
       error = action.payload || {message: action.payload.message};
       return {...state, surveyResult: { survey: null, error: error, loading: false,message: action.payload.message,success: action.payload.success}}
-      
+    
+    case 'SHOW_SURVEY_RESULT':
+      return {...state, showSurveyResult: {survey: null, error: null, loading: true,message: null,success: false}}
+    case 'SHOW_SURVEY_RESULT_SUCCESS':
+      return {...state, showSurveyResult: {survey: action.payload.data, error: null, loading: false,message: action.payload.message,success: action.payload.success}}
+    case 'SHOW_SURVEY_RESULT_FAILURE':
+      error =  action.payload.message
+      return {...state, showSurveyResult: { survey: null, error: error, loading: false,message: action.payload.message,success: action.payload.success}}
+    
     default: 
       return state;  
     

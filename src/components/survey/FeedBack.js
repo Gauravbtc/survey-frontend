@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import FeedBackForm from "./FeedBackForm";
-// import SurveyParticipantForm from './SurveyParticipantForm';
 import Loader from '../../layouts/Loader';
 
 const FeedBack = (props) =>{
@@ -37,8 +36,7 @@ const FeedBack = (props) =>{
     }
 
     if(success){
-      debugger;
-      console.log("---------", props.surveyResult)
+      props.history.push("/survey_result/"+ props.surveyResult.survey[0].participant_id)
     }
 
   },[loading,success]);

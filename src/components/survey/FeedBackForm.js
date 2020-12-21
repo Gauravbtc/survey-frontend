@@ -1,66 +1,7 @@
-import React ,{ Component } from 'react';
-import { Field, reduxForm, FieldArray } from 'redux-form';
-import { withRouter } from 'react-router-dom';
-import Option from './Option';
-
-
-// const validate = (values) => { 
-//   const errors = {}
-//   if(!values.name){
-//     errors.title = "Name is required"
-//   }
-
-//   if(!values.email) {
-//     errors.email = 'Email is required'
-//   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-//     errors.email = 'Invalid email address'
-//   }
-
-
-//   return errors
-// }
-
-const required = value => (value ? undefined : 'Required')
-
-const renderField = ({input,label,type,meta: { touched, error }}) => {
-  console.log("---inside render", input.value)
-  return (
-  <div>
-    <div className="form-group">
-      <input {...input} placeholder={label} type={type} className="form-control"/>
-      {touched &&
-        ((error &&
-          <span style={{color: "red"}}>
-            {label + error}
-          </span>))}
-    </div>
-  </div>
-  )
-}
-
-const renderRadioField = ({input,label,type,meta: { touched, error }}) => {
-  return (
-  <div>
-    <div className="form-group">
-      {/* <input {...input} placeholder={label} type={type} className="form-control"/>
-      {touched &&
-        ((error &&
-          <span style={{color: "red"}}>
-            {label + error}
-          </span>))} */}
-         {input.value.map((option) => {
-           return (
-            <>
-            <input {...input} type="radio" value={option} className="form-control" checked={input.value === option} />
-            <label>{option}</label>
-            </>
-           ) 
-         })}
-         
-    </div>
-  </div>
-  )
-}
+import React ,{ Component } from 'react'
+import { Field, reduxForm, FieldArray } from 'redux-form'
+import { withRouter } from 'react-router-dom'
+import Option from './Option'
 
 class RenderQuestions extends Component {
   
@@ -95,20 +36,12 @@ class FeedBackForm extends Component{
       return(
         <div className="container-fluid">
             <div className="panel panel-default">
-              <div className="panel-heading">FeedBack</div>
+              <div className="panel-heading">{this.props.initialValues.title}</div>
               <div className="panel-body">
                 <form onSubmit={ handleSubmit }>	
                     <div className="row">
                       <div className="col-md-6">
-                        <div className="form-group">
-                            <label><span className="text-danger">{this.props.initialValues.title}</span> </label>
-                            <Field name="title" component={renderField} type= "text" label="title" />
-                        </div>
-                        {/* <div className="form-group">
-                            <label>Participant Emais<span className="text-danger">*</span></label>
-                            <Field name="email" component={renderField} type= "text" label="Email " validate={[required]} />
-                        </div> */}
-                      <FieldArray name="questions" component={RenderQuestions} change={change} />  
+                        <FieldArray name="questions" component={RenderQuestions} change={change} />  
                       </div>  
                     </div>
                     <div className="panel-footer">

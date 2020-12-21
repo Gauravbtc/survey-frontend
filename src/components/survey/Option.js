@@ -10,9 +10,9 @@ class Option extends React.Component {
   }
 
   handleChange = (e) => {
-    const answer = e.target.value;
-    this.setState({ answer: answer });
-    this.props.change(this.props.options_name , answer);
+    const answer = e.target.value
+    this.setState({ answer: answer })
+    this.props.change(this.props.options_name , answer)
   }
 
   render() {
@@ -29,6 +29,7 @@ class Option extends React.Component {
                   type="radio"
                   onChange={this.handleChange}
                   checked={this.state.answer === option}
+                  className = "qustions-options"
               />
               </label>
         )})
